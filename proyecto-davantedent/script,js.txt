@@ -1,0 +1,57 @@
+// script.js
+
+// Función para cargar citas desde el almacenamiento local
+function cargarCitas() {
+    const citas = JSON.parse(localStorage.getItem('citas')) || []; // Cargar citas o inicializar vacío
+    const tablaCitas = document.getElementById('tabla-citas').getElementsByTagName('tbody')[0];
+    tablaCitas.innerHTML = ''; // Limpiar la tabla
+
+    if (citas.length === 0) {
+        const row = tablaCitas.insertRow();
+        row.innerHTML = '<td colspan="5" style="text-align: center;">Dato vacío</td>';
+    } else {
+        citas.forEach((cita, index) => {
+            const row = tablaCitas.insertRow();
+            row.innerHTML = `
+                <td>${cita.fecha}</td>
+                <td>${cita.nombre}</td>
+                <td>${cita.dni}</td>
+                <td>${cita.telefono}</td>
+                <td>
+                    <button onclick="eliminarCita(${index})">Eliminar</button>
+                </td>
+            `;
+        });
+    }
+}
+
+// Función para añadir una cita
+function añadirCita(event) {
+    event.preventDefault();
+
+    const fecha = document.getElementById('fecha').value;
+    const nombre = document.getElementById('nombre').value;
+    const dni = document.getElementById('dni').value;
+    const telefono = document.getElementById('telefono').value;
+    
+    // Crear un objeto cita
+    const nuevaCita = {
+        fecha,
+        nombre,
+        dni,
+        telefono
+    };
+
+    // Guardar la cita en el almacenamiento local
+    const citas = JSON.parse(localStorage.getItem('citas')) || [];
+    citas.push(nuevaCita);
+    localStorage.setItem('citas', JSON.stringify(citas));
+
+    cargarCitas();
+}
+
+// Cargar las citas cuando la página se carga
+window.onload = cargarCitas;
+
+// Añadir la cita cuando el formulario se envíe
+document.getElementById('formulario-cita').addEventListener('submit', añadirCita);

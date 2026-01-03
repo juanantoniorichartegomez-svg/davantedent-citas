@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DavanteDent - Gestión de Citas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="imagenes/logo.png" alt="Logo DavanteDent">
+        <h1>Gestión de Citas - DavanteDent</h1>
+    </header>
+    
+    <main>
+        <section class="formulario">
+            <h2>Añadir o Modificar Cita</h2>
+            <form id="formulario-cita">
+                <label for="fecha">Fecha y Hora:</label>
+                <input type="datetime-local" id="fecha" required>
+
+                <label for="nombre">Nombre del paciente:</label>
+                <input type="text" id="nombre" required>
+
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" required>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" required>
+
+                <label for="fecha-nacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="fecha-nacimiento" required>
+
+                <label for="observaciones">Observaciones:</label>
+                <textarea id="observaciones"></textarea>
+
+                <button type="submit">Guardar Cita</button>
+            </form>
+        </section>
+
+        <section class="citas">
+            <h2>Citas Programadas</h2>
+            <table id="tabla-citas">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>DNI</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las citas se llenarán dinámicamente aquí -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>DavanteDent - Contacto: contacto@davantedent.com</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
